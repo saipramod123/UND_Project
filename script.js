@@ -88,6 +88,10 @@ const nextPosts = posts.slice(currentIndex, currentIndex + postsPerPage);nextPos
       dateStyle: "medium",
       timeStyle: "short",
     });
+    card.id = `post-${post.id}`;
+    const currentPageURL = window.location.href.split('#')[0];
+const postURL = `${currentPageURL}#post-${post.id}`;
+const encodedPostURL = encodeURIComponent(postURL);
  const messageEncoded = encodeURIComponent(post.message);
     card.innerHTML = `
       <img src="${post.image}" alt="Author image" />
@@ -99,10 +103,10 @@ const nextPosts = posts.slice(currentIndex, currentIndex + postsPerPage);nextPos
       <div class="post-actions">
   <button class="share-toggle" aria-label="Share this post">🔗</button>
   <div class="share-icons hidden">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://und.edu&quote=${messageEncoded}" target="_blank" aria-label="Share on Facebook"> <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="" class="icon" /> Facebook</a>
-    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://und.edu&summary=${messageEncoded}" target="_blank" aria-label="Share on LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="" class="icon" /> LinkedIn</a>
-    <a href="https://twitter.com/intent/tweet?text=${messageEncoded}%20https://und.edu" target="_blank" aria-label="Share on Twitter"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/twitter.svg" alt="" class="icon" /> Twitter</a>
-    <a href="mailto:?subject=Check%20this%20out&body=${messageEncoded}%20https://und.edu" target="_blank" aria-label="Share via Email"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/maildotru.svg" alt="" class="icon" /> Email</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedPostURL}" target="_blank" aria-label="Share on Facebook"> <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="" class="icon" /> Facebook</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedPostURL}" target="_blank" aria-label="Share on LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="" class="icon" /> LinkedIn</a>
+    <a href="https://twitter.com/intent/tweet?url=${encodedPostURL}&text=${messageEncoded}" target="_blank" aria-label="Share on Twitter"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/twitter.svg" alt="" class="icon" /> Twitter</a>
+    <a href="mailto:?subject=Check this out&body=${messageEncoded}%0A${encodedPostURL}" target="_blank" aria-label="Share via Email"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/maildotru.svg" alt="" class="icon" /> Email</a>
   </div>
 </div>
     `;
