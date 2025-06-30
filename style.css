@@ -647,3 +647,40 @@ body {
   background-color: #f1f1f1; 
    padding: 2rem 1rem;
 }
+
+
+
+/*Feeback Button*/
+.feedback-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--und-green, #00843d);
+  color: white;
+  padding: 0.75rem 1.2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  z-index: 999;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feedback-btn:hover {
+  background-color: #006d32;
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 480px) {
+  .feedback-btn {
+    bottom: 15px;
+    right: 15px;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+}
