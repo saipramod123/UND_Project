@@ -5,10 +5,12 @@ const hamburger = document.getElementById("hamburger");
 const nav = document.getElementById("main-nav");
 
 let allPosts = [];
-let postsPerPage = 5;
+let postsPerPage = 8;
 let currentIndex = 0;
 const loadMoreBtn = document.getElementById("load-more-btn");
 const loadingIndicator = document.getElementById("loading-indicator");
+let popupPosts = [];
+let popupCurrentIndex = 0;
 
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -80,10 +82,11 @@ function renderPosts(posts, isLoadMore = false) {
     postList.innerHTML = "<p>No posts found.</p>";
     return;
   }
-const nextPosts = posts.slice(currentIndex, currentIndex + postsPerPage);nextPosts.forEach(post => {
+  popupPosts = posts;
+const nextPosts = posts.slice(currentIndex, currentIndex + postsPerPage);nextPosts.forEach((post,index) => {
     const card = document.createElement("div");
     card.className = "post-card reveal";
-
+  card.addEventListener("click", () => openPopup(currentIndex + index));
     const localDate = new Date(post.date).toLocaleString(undefined, {
       dateStyle: "medium",
       timeStyle: "short",
@@ -124,7 +127,57 @@ currentIndex += postsPerPage;
     loadMoreBtn.style.display = "none";
   }
 }
+/*Functions for the PopUp Posts */
 
+const popup = document.getElementById("popup");
+const popupBody = document.getElementById("popup-body");
+const closeBtn = document.querySelector(".close-btn");
+const prevBtn = document.getElementById("prev-post");
+const nextBtn = document.getElementById("next-post");
+
+function openPopup(index) {
+  popupCurrentIndex = index;
+  showPopup(popupCurrentIndex);
+  popup.classList.remove("hidden");
+}
+
+function showPopup(index) {
+  const post = popupPosts[index];
+  const localDate = new Date(post.date).toLocaleString(undefined, {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+
+  popupBody.innerHTML = `
+    <h2>${post.author} (@${post.username})</h2>
+    <p>${post.message}</p>
+    <p><small>${localDate}</small></p>
+    <p><strong>Location:</strong> ${post.location || "N/A"}</p>
+    <p>❤️ ${post.likes} | 🔁 ${post.reposts}</p>
+  `;
+}
+
+function closePopup() {
+  popup.classList.add("hidden");
+}
+
+function nextPost() {
+  if (popupCurrentIndex < popupPosts.length - 1) {
+    popupCurrentIndex++;
+    showPopup(popupCurrentIndex);
+  }
+}
+
+function prevPost() {
+  if (popupCurrentIndex > 0) {
+    popupCurrentIndex--;
+    showPopup(popupCurrentIndex);
+  }
+}
+
+closeBtn.addEventListener("click", closePopup);
+nextBtn.addEventListener("click", nextPost);
+prevBtn.addEventListener("click", prevPost);
 
 function observeReveal() {
   const observer = new IntersectionObserver((entries) => {

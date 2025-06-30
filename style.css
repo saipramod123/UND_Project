@@ -684,3 +684,75 @@ body {
     font-size: 0.85rem;
   }
 }
+
+
+/*CSS for PopUp Posts*/
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0 2rem;
+}
+
+.popup-content {
+  position: relative;
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  z-index: 2;
+}
+
+
+.popup.hidden {
+  display: none;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.nav-btn.left {
+  left: 1rem;
+}
+
+.nav-btn.right {
+  right: 1rem;
+}
+
+.popup-body {
+  text-align: left;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 3;
+}
+
+@media (max-width: 500px) {
+  .popup-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
