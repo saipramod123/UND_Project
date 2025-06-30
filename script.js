@@ -5,10 +5,25 @@ const hamburger = document.getElementById("hamburger");
 const nav = document.getElementById("main-nav");
 
 let allPosts = [];
+let postsPerPage = 5;
+let currentIndex = 0;
+const loadMoreBtn = document.getElementById("load-more-btn");
+const loadingIndicator = document.getElementById("loading-indicator");
+
 
 window.addEventListener("DOMContentLoaded", () => {
   showSkeleton();
   fetchAllPosts();
+ loadMoreBtn.addEventListener("click", () => {
+  loadingIndicator.style.display = "block";
+  loadMoreBtn.disabled = true;
+
+  setTimeout(() => {
+    renderPosts(allPosts, true);
+    loadingIndicator.style.display = "none";
+    loadMoreBtn.disabled = false;
+  }, 800);
+});
   searchInput.addEventListener("input", handleSearch);
 });
 
@@ -56,14 +71,16 @@ async function fetchAllPosts() {
   renderPosts(allPosts);
 }
 
-function renderPosts(posts) {
-  postList.innerHTML = "";
+function renderPosts(posts, isLoadMore = false) {
+  if (!isLoadMore) {
+    postList.innerHTML = ""; // clear for fresh render
+    currentIndex = 0;        // reset index on new search
+  }
   if (!posts.length) {
     postList.innerHTML = "<p>No posts found.</p>";
     return;
   }
-
-  posts.forEach(post => {
+const nextPosts = posts.slice(currentIndex, currentIndex + postsPerPage);nextPosts.forEach(post => {
     const card = document.createElement("div");
     card.className = "post-card reveal";
 
@@ -95,7 +112,15 @@ function renderPosts(posts) {
 
   observeReveal();
 attachShareToggles(); 
+currentIndex += postsPerPage;
+
+  if (currentIndex < posts.length) {
+    loadMoreBtn.style.display = "block";
+  } else {
+    loadMoreBtn.style.display = "none";
+  }
 }
+
 
 function observeReveal() {
   const observer = new IntersectionObserver((entries) => {
