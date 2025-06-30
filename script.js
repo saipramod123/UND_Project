@@ -71,7 +71,7 @@ function renderPosts(posts) {
       dateStyle: "medium",
       timeStyle: "short",
     });
-
+ const messageEncoded = encodeURIComponent(post.message);
     card.innerHTML = `
       <img src="${post.image}" alt="Author image" />
       <p><strong>${post.author}</strong> (@${post.username})</p>
@@ -79,12 +79,22 @@ function renderPosts(posts) {
       <p><strong>Location:</strong> ${post.location || "N/A"}</p>
       <p><small>${localDate}</small></p>
       <p>❤️ ${post.likes} | 🔁 ${post.reposts}</p>
+      <div class="post-actions">
+  <button class="share-toggle" aria-label="Share this post">🔗</button>
+  <div class="share-icons hidden">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://und.edu&quote=${messageEncoded}" target="_blank" aria-label="Share on Facebook"> <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="" class="icon" /> Facebook</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://und.edu&summary=${messageEncoded}" target="_blank" aria-label="Share on LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="" class="icon" /> LinkedIn</a>
+    <a href="https://twitter.com/intent/tweet?text=${messageEncoded}%20https://und.edu" target="_blank" aria-label="Share on Twitter"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/twitter.svg" alt="" class="icon" /> Twitter</a>
+    <a href="mailto:?subject=Check%20this%20out&body=${messageEncoded}%20https://und.edu" target="_blank" aria-label="Share via Email"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/maildotru.svg" alt="" class="icon" /> Email</a>
+  </div>
+</div>
     `;
 
     postList.appendChild(card);
   });
 
   observeReveal();
+attachShareToggles(); 
 }
 
 function observeReveal() {
@@ -99,6 +109,41 @@ function observeReveal() {
 
   document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 }
+function attachShareToggles() {
+  const toggles = document.querySelectorAll(".share-toggle");
+
+  toggles.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation(); // prevent window click listener from immediately closing it
+
+      // Close any open share icons
+      document.querySelectorAll(".share-icons").forEach(icon => {
+        if (icon !== btn.nextElementSibling) {
+          icon.classList.add("hidden");
+        }
+      });
+
+      // Toggle current one
+      const icons = btn.nextElementSibling;
+      icons.classList.toggle("hidden");
+    });
+  });
+
+  // Close all share popups if user clicks outside
+  window.addEventListener("click", () => {
+    document.querySelectorAll(".share-icons").forEach(icon => {
+      icon.classList.add("hidden");
+    });
+  });
+
+  // Prevent closing when clicking inside the share box
+  document.querySelectorAll(".share-icons").forEach(icon => {
+    icon.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+  });
+}
+
 window.addEventListener("scroll", () => {
   const header = document.querySelector(".main-header");
   if (window.scrollY > 10) {

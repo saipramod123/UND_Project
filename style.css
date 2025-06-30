@@ -149,7 +149,9 @@ body {
   transform: translateY(20px);
   transition: opacity var(--transition), transform var(--transition);
   text-align: left;
+  position: relative; /* allows absolute positioning inside */
 }
+
 
 .post-card.revealed {
   opacity: 1;
@@ -162,6 +164,16 @@ body {
   object-fit: cover;
   margin-bottom: 0.5rem;
   border-radius: 4px;
+}
+/* Share button container at bottom-right */
+.post-actions {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column-reverse; /* share button below, icons above */
+  align-items: flex-end;
+  z-index: 2;
 }
 
 .skeleton {
@@ -524,4 +536,70 @@ body {
     max-width: 250px;
       border-radius: 12px;
   }
+}
+
+
+
+
+
+
+/* Share button */
+.share-toggle {
+  background: var(--und-green);
+  color: white;
+  border: none;
+  padding: 6px 8px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.share-toggle:hover {
+  background: #006d32;
+}
+
+/* Upward-expanding icon group */
+.share-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 6px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  min-width: 150px;
+}
+
+.share-icons a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  color: #222;
+  background-color: #f3f3f3;
+  padding: 10px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+  width: 100%;              /* NEW: full width */
+  box-sizing: border-box;   /* ensures padding doesn't overflow */
+}
+
+.share-icons a:hover {
+  background-color: var(--und-green);
+  color: white;
+}
+
+.share-icons .icon {
+  width: 18px;
+  height: 18px;
+  filter: grayscale(100%) brightness(0);
+}
+.hidden {
+  display: none;
 }
