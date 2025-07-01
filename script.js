@@ -45,13 +45,16 @@ function handleSearch() {
   renderPosts(filtered);
 }
 
+const FETCH_WINDOW_SIZE_DAYS = 3;         
+const TOTAL_HISTORY_DAYS = 9;  
 async function fetchAllPosts() {
   const today = new Date();
   const allFetchedPosts = [];
+            
 
-  for (let offset = 0; offset < 9; offset += 3) {
+  for (let offset = 0; offset < TOTAL_HISTORY_DAYS; offset += FETCH_WINDOW_SIZE_DAYS) {
     const fromDate = new Date(today);
-    fromDate.setDate(today.getDate() - offset - 2);
+    fromDate.setDate(today.getDate() - offset - (FETCH_WINDOW_SIZE_DAYS-1));
     const toDate = new Date(today);
     toDate.setDate(today.getDate() - offset);
 
