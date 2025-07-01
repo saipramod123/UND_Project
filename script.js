@@ -42,7 +42,7 @@ function handleSearch() {
   const filtered = allPosts.filter(post =>
     post.message.toLowerCase().includes(query)
   );
-  renderPosts(filtered);
+  renderPosts(filtered,false,query);
 }
 
 const FETCH_WINDOW_SIZE_DAYS = 3;         
@@ -76,7 +76,7 @@ async function fetchAllPosts() {
   renderPosts(allPosts);
 }
 
-function renderPosts(posts, isLoadMore = false) {
+function renderPosts(posts, isLoadMore = false, highlightQuery = "") {
   if (!isLoadMore) {
     postList.innerHTML = ""; 
     currentIndex = 0;        
@@ -99,10 +99,15 @@ const nextPosts = posts.slice(currentIndex, currentIndex + postsPerPage);nextPos
 const postURL = `${currentPageURL}#post-${post.id}`;
 const encodedPostURL = encodeURIComponent(postURL);
  const messageEncoded = encodeURIComponent(post.message);
+ let highlightedMessage = post.message;
+    if (highlightQuery) {
+      const regex = new RegExp(`(${highlightQuery})`, "gi");
+      highlightedMessage = post.message.replace(regex, "<mark>$1</mark>");
+    }
     card.innerHTML = `
       <img src="${post.image}" alt="Author image" />
       <p><strong>${post.author}</strong> (@${post.username})</p>
-      <p>${post.message}</p>
+      <p>${highlightedMessage}</p>
       <p><strong>Location:</strong> ${post.location || "N/A"}</p>
       <p><small>${localDate}</small></p>
       <p>❤️ ${post.likes} | 🔁 ${post.reposts}</p>
