@@ -153,7 +153,8 @@ body {
   .main-header .und-logo {
     order: 1;
     height: 60px;
-    width: auto;
+    max-width: none;
+    width: 310px;
   }
 
   #main-nav ul {
@@ -356,11 +357,10 @@ body {
   transform: translateY(-5px);
 }
 
-
 .main-footer {
   background-color: #000;
   color: #fff;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 1rem;
   text-align: center;
 }
 
@@ -368,25 +368,21 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   margin-bottom: 1rem;
 }
 
-.footer-content nav ul {
+.footer-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
   align-items: center;
 }
 
-.footer-logo {
-  height: 40px;
-}
-
-.main-footer nav a {
+.footer-nav a {
   color: white;
   text-decoration: none;
   font-weight: 500;
@@ -394,7 +390,7 @@ body {
   padding-bottom: 4px;
 }
 
-.main-footer nav a::after {
+.footer-nav a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -405,11 +401,23 @@ body {
   transition: width 0.3s ease;
 }
 
-.main-footer nav a:hover::after {
+.footer-nav a:hover::after {
   width: 100%;
 }
 
+.footer-logo {
+  height: 40px;
+  width: auto;
+}
 
+.footer-legal {
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
+  padding-top: 1rem;
+}
+
+/* === Responsive Styles === */
 @media (min-width: 600px) {
   #post-list {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -434,23 +442,26 @@ body {
     max-width: 500px;
   }
 
-  .footer-content {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-content nav ul {
-    flex-direction: row;
-    gap: 2rem;
-    align-items: center;
-  }
-
   .main-header nav ul {
     gap: 2rem;
   }
 }
 
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .footer-nav ul {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .footer-legal {
+    font-size: 1rem;
+  }
+}
 
 
 
