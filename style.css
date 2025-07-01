@@ -147,6 +147,7 @@ body {
     align-items: center;
     margin-left: auto;
     padding-right: 2rem;
+    justify-content: flex-end;
   }
 
   .main-header .und-logo {
