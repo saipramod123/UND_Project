@@ -105,7 +105,9 @@ const encodedPostURL = encodeURIComponent(postURL);
       <p><small>${localDate}</small></p>
       <p>❤️ ${post.likes} | 🔁 ${post.reposts}</p>
       <div class="post-actions">
-  <button class="share-toggle" aria-label="Share this post">🔗</button>
+  <button class="share-toggle" aria-label="Share this post">
+  <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/icons/share-fill.svg" alt="Share icon" style=" height: 30px;" />
+</button>
   <div class="share-icons hidden">
     <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedPostURL}" target="_blank" aria-label="Share on Facebook"> <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="" class="icon" /> Facebook</a>
     <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedPostURL}" target="_blank" aria-label="Share on LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="" class="icon" /> LinkedIn</a>
