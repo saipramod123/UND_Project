@@ -75,8 +75,8 @@ async function fetchAllPosts() {
 
 function renderPosts(posts, isLoadMore = false) {
   if (!isLoadMore) {
-    postList.innerHTML = ""; // clear for fresh render
-    currentIndex = 0;        // reset index on new search
+    postList.innerHTML = ""; 
+    currentIndex = 0;        
   }
   if (!posts.length) {
     postList.innerHTML = "<p>No posts found.</p>";
@@ -87,7 +87,6 @@ const nextPosts = posts.slice(currentIndex, currentIndex + postsPerPage);nextPos
     const card = document.createElement("div");
     card.className = "post-card reveal";
     card.addEventListener("click", () => {showBootstrapPost(currentIndex + index);});
-  /*card.addEventListener("click", () => openPopup(currentIndex + index));*/
     const localDate = new Date(post.date).toLocaleString(undefined, {
       dateStyle: "medium",
       timeStyle: "short",
@@ -130,7 +129,7 @@ currentIndex += postsPerPage;
     loadMoreBtn.style.display = "none";
   }
 }
-/*Functions for the PopUp Posts */
+
 const modal = new bootstrap.Modal(document.getElementById('postModal'));
 const modalPostContent = document.getElementById('modalPostContent');
 
@@ -169,58 +168,7 @@ document.getElementById("nextPost").addEventListener("click", (e) => {
 });
 
 
-/*Functions for the PopUp Posts */
-/*
-const popup = document.getElementById("popup");
-const popupBody = document.getElementById("popup-body");
-const closeBtn = document.querySelector(".close-btn");
-const prevBtn = document.getElementById("prev-post");
-const nextBtn = document.getElementById("next-post");
 
-function openPopup(index) {
-  popupCurrentIndex = index;
-  showPopup(popupCurrentIndex);
-  popup.classList.remove("hidden");
-}
-
-function showPopup(index) {
-  const post = popupPosts[index];
-  const localDate = new Date(post.date).toLocaleString(undefined, {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
-
-  popupBody.innerHTML = `
-    <h2>${post.author} (@${post.username})</h2>
-    <p>${post.message}</p>
-    <p><small>${localDate}</small></p>
-    <p><strong>Location:</strong> ${post.location || "N/A"}</p>
-    <p>❤️ ${post.likes} | 🔁 ${post.reposts}</p>
-  `;
-}
-
-function closePopup() {
-  popup.classList.add("hidden");
-}
-
-function nextPost() {
-  if (popupCurrentIndex < popupPosts.length - 1) {
-    popupCurrentIndex++;
-    showPopup(popupCurrentIndex);
-  }
-}
-
-function prevPost() {
-  if (popupCurrentIndex > 0) {
-    popupCurrentIndex--;
-    showPopup(popupCurrentIndex);
-  }
-}
-
-closeBtn.addEventListener("click", closePopup);
-nextBtn.addEventListener("click", nextPost);
-prevBtn.addEventListener("click", prevPost);
-*/
 
 function observeReveal() {
   const observer = new IntersectionObserver((entries) => {
@@ -239,29 +187,29 @@ function attachShareToggles() {
 
   toggles.forEach(btn => {
     btn.addEventListener("click", (e) => {
-      e.stopPropagation(); // prevent window click listener from immediately closing it
+      e.stopPropagation(); 
 
-      // Close any open share icons
+      
       document.querySelectorAll(".share-icons").forEach(icon => {
         if (icon !== btn.nextElementSibling) {
           icon.classList.add("hidden");
         }
       });
 
-      // Toggle current one
+   
       const icons = btn.nextElementSibling;
       icons.classList.toggle("hidden");
     });
   });
 
-  // Close all share popups if user clicks outside
+
   window.addEventListener("click", () => {
     document.querySelectorAll(".share-icons").forEach(icon => {
       icon.classList.add("hidden");
     });
   });
 
-  // Prevent closing when clicking inside the share box
+  
   document.querySelectorAll(".share-icons").forEach(icon => {
     icon.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -284,7 +232,6 @@ hamburger.addEventListener("click", () => {
   nav.classList.toggle("active");
 });
 
-// Optional: Highlight clicked link
 document.querySelectorAll("#main-nav a").forEach(link => {
   link.addEventListener("click", function () {
     document.querySelectorAll("#main-nav a").forEach(l => l.classList.remove("active"));

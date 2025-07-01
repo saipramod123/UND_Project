@@ -13,11 +13,11 @@ body {
   background-color: var(--light-bg);
   color: var(--text-dark);
   transition: background-color var(--transition), color var(--transition);
-  padding-top: 80px; /* space for fixed header */
+  padding-top: 80px; 
 }
 
 
-/* Base Header - Mobile First */
+
 .main-header {
   position: fixed;
   top: 0;
@@ -33,7 +33,7 @@ body {
 
 .header-content {
   display: flex;
-  justify-content: space-between; /* pushes first and last item to edges */
+  justify-content: space-between; 
   align-items: center;
   padding: 0.5rem 1rem;
   height: 80px;
@@ -47,7 +47,7 @@ body {
 
 
 
-/* Hamburger */
+
 #hamburger {
     display: flex;
     flex-direction: column;
@@ -81,7 +81,7 @@ body {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* Navigation - Mobile */
+
 #main-nav {
   display: none;
   width: 100%;
@@ -125,7 +125,7 @@ body {
   transition: background 0.2s, color 0.2s;
 }
 
-/* Desktop Styles */
+
 @media (min-width: 769px) {
   .header-content {
     display: flex;
@@ -199,7 +199,7 @@ body {
 }
 
 
-/* HERO */
+
 .hero {
   padding: 2rem 1rem;
   background-color: white;
@@ -220,7 +220,7 @@ body {
 }
 
 .hero-content a {
-  color: #fff; /* white text */
+  color: #fff; 
   text-decoration: underline;
   font-weight: 600;
   transition: color 0.3s ease;
@@ -228,7 +228,7 @@ body {
 }
 
 .hero-content a:hover {
-  color: #cde6dc; /* soft greenish-white on hover */
+  color: #cde6dc; 
   text-decoration: none;
 }
 
@@ -236,7 +236,7 @@ body {
   max-width: 100%;
   height: auto;
  
-  border-radius: 12px; /* soft-rounded corners for desktop */
+  border-radius: 12px; 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   
 }
@@ -276,10 +276,10 @@ body {
   flex-direction: column;
   gap: 0.5rem;
   padding-right:4.5rem;
-  overflow: visible;     /* Important to prevent trimming */
+  overflow: visible;    
   position: relative;
 
-  transform: translateY(8px); /* initial state for reveal */
+  transform: translateY(8px);
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -298,7 +298,7 @@ body {
   object-fit: cover;
   border-radius: 8px;
 }
-/* Share button container at bottom-right */
+
 .post-actions {
   position: absolute;
   bottom: 8px;
@@ -308,7 +308,7 @@ body {
   align-items: flex-end;
   z-index: 2;
   overflow: visible;
-  max-width: none;/* prevent going outside card */
+  max-width: none;
 }
 
 
@@ -324,7 +324,7 @@ body {
   100% { background-position: 100%; }
 }
 
-/* CAMPAIGN GOALS */
+
 .campaign-goals {
   background-color: white;
   padding: 2rem 1rem;
@@ -355,7 +355,7 @@ body {
   transform: translateY(-5px);
 }
 
-/* FOOTER */
+
 .main-footer {
   background-color: #000;
   color: #fff;
@@ -408,7 +408,7 @@ body {
   width: 100%;
 }
 
-/* RESPONSIVE */
+
 @media (min-width: 600px) {
   #post-list {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -455,7 +455,7 @@ body {
 
 
 
-/* Responsive image adjustment for mobile only */
+
 @media (max-width: 768px) {
   .hero-content img {
     width: 65vw;
@@ -470,7 +470,7 @@ body {
 
 
 
-/* Share button */
+
 .share-toggle {
   background: none;
   color: #333;
@@ -495,7 +495,7 @@ body {
 }
 
 
-/* Upward-expanding icon group */
+
 .share-icons {
   display: flex;
   flex-direction: column;
@@ -523,8 +523,8 @@ body {
   padding: 10px 12px;
   border-radius: 4px;
   transition: background-color 0.2s, color 0.2s;
-  width: 100%;              /* NEW: full width */
-  box-sizing: border-box;   /* ensures padding doesn't overflow */
+  width: 100%;              
+  box-sizing: border-box;  
 }
 
 .share-icons a:hover {
@@ -542,7 +542,7 @@ body {
 }
 
 
-/*Load More Button*/
+
 #load-more-btn {
   margin: 1rem auto;
   display: block;
@@ -574,7 +574,7 @@ body {
   cursor: not-allowed;
 }
 
-/*Gray Shade*/
+
 .campaign-wrapper {
   background-color: #f1f1f1; 
    padding: 2rem 1rem;
@@ -582,7 +582,7 @@ body {
 
 
 
-/*Feeback Button*/
+
 .feedback-btn {
   position: fixed;
   bottom: 20px;
@@ -607,7 +607,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Responsive adjustment for small screens */
+
 @media (max-width: 480px) {
   .feedback-btn {
     bottom: 15px;
@@ -618,8 +618,7 @@ body {
 }
 
 
-/*Bootsrap CSS for PopUp Cards*/
-/* Fullscreen-relative buttons (arrows + close) */
+
 .custom-arrow {
   position: absolute;
   top: 50%;
@@ -705,79 +704,3 @@ body {
     padding: 0.25rem;
   }
 }
-
-
-
-
-/*CSS for PopUp Posts*/
-/*
-.popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 0 2rem;
-}
-
-.popup-content {
-  position: relative;
-  background: white;
-  width: 100%;
-  max-width: 600px;
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-  z-index: 2;
-}
-
-
-.popup.hidden {
-  display: none;
-}
-
-.nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2.5rem;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  z-index: 3;
-}
-
-.nav-btn.left {
-  left: 1rem;
-}
-
-.nav-btn.right {
-  right: 1rem;
-}
-
-.popup-body {
-  text-align: left;
-}
-
-.close-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  z-index: 3;
-}
-
-@media (max-width: 500px) {
-  .popup-content {
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-*/
