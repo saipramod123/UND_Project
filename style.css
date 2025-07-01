@@ -700,7 +700,7 @@ body {
   z-index: 1056;
   padding: 0.5rem 1rem;
   cursor: pointer;
-    padding:1 rem; 
+    padding:1rem; 
    line-height: 1;
 }
 
@@ -726,6 +726,57 @@ body {
   z-index: 1056;
   cursor: pointer;
 }
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-width: 92vw;
+    padding: 1rem;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 12px;
+  }
+
+  .custom-arrow {
+    font-size: 2.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1056;
+    padding: 0.25rem;
+  }
+
+  .custom-arrow.left {
+    left: -1.2rem;
+  }
+
+  .custom-arrow.right {
+    right: -1.2rem;
+  }
+
+  .custom-close {
+    font-size: 2.4rem;
+    top: -2rem;
+    right: -1.2rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1056;
+    padding: 0.25rem;
+  }
+}
+
+
+
+
 /*CSS for PopUp Posts*/
 /*
 .popup {
