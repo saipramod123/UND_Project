@@ -82,11 +82,12 @@ function renderPosts(posts, isLoadMore = false) {
     postList.innerHTML = "<p>No posts found.</p>";
     return;
   }
-  popupPosts = posts;
+ popupPosts = posts;
 const nextPosts = posts.slice(currentIndex, currentIndex + postsPerPage);nextPosts.forEach((post,index) => {
     const card = document.createElement("div");
     card.className = "post-card reveal";
-  card.addEventListener("click", () => openPopup(currentIndex + index));
+    card.addEventListener("click", () => {showBootstrapPost(currentIndex + index);});
+  /*card.addEventListener("click", () => openPopup(currentIndex + index));*/
     const localDate = new Date(post.date).toLocaleString(undefined, {
       dateStyle: "medium",
       timeStyle: "short",
@@ -128,7 +129,46 @@ currentIndex += postsPerPage;
   }
 }
 /*Functions for the PopUp Posts */
+const modal = new bootstrap.Modal(document.getElementById('postModal'));
+const modalPostContent = document.getElementById('modalPostContent');
 
+function showBootstrapPost(index) {
+  const post = popupPosts[index];
+  const localDate = new Date(post.date).toLocaleString(undefined, {
+    dateStyle: "medium", timeStyle: "short"
+  });
+
+  modalPostContent.innerHTML = `
+    <div>
+      <h5>${post.author} (@${post.username})</h5>
+      <p>${post.message}</p>
+      <p><strong>Location:</strong> ${post.location || "N/A"}</p>
+      <p><small>${localDate}</small></p>
+      <p>❤️ ${post.likes} | 🔁 ${post.reposts}</p>
+    </div>
+  `;
+
+  popupCurrentIndex = index;
+  modal.show();
+}
+
+document.getElementById("prevPost").addEventListener("click", (e) => {
+    e.stopPropagation(); 
+  if (popupCurrentIndex > 0) {
+    showBootstrapPost(popupCurrentIndex - 1);
+  }
+});
+
+document.getElementById("nextPost").addEventListener("click", (e) => {
+     e.stopPropagation();
+  if (popupCurrentIndex < popupPosts.length - 1) {
+    showBootstrapPost(popupCurrentIndex + 1);
+  }
+});
+
+
+/*Functions for the PopUp Posts */
+/*
 const popup = document.getElementById("popup");
 const popupBody = document.getElementById("popup-body");
 const closeBtn = document.querySelector(".close-btn");
@@ -178,6 +218,7 @@ function prevPost() {
 closeBtn.addEventListener("click", closePopup);
 nextBtn.addEventListener("click", nextPost);
 prevBtn.addEventListener("click", prevPost);
+*/
 
 function observeReveal() {
   const observer = new IntersectionObserver((entries) => {

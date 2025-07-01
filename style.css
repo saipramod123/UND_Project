@@ -686,7 +686,48 @@ body {
 }
 
 
+/*Bootsrap CSS for PopUp Cards*/
+/* Fullscreen-relative buttons (arrows + close) */
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3.2rem;
+  font-weight: bold;
+  color: white;
+  background: none;
+  border: none;
+  z-index: 1056;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+    padding:1 rem; 
+   line-height: 1;
+}
+
+
+.custom-arrow.left {
+  left: -2.5rem;
+}
+
+.custom-arrow.right {
+  right: -2.5rem;
+}
+
+.custom-close {
+  position: absolute;
+  top: -5.5rem;
+  right: -4rem;
+  font-size: 2.8rem;
+  color: white;
+  background: none;
+  border: none;
+ padding: 0.75rem;
+  line-height: 1;
+  z-index: 1056;
+  cursor: pointer;
+}
 /*CSS for PopUp Posts*/
+/*
 .popup {
   position: fixed;
   inset: 0;
@@ -756,3 +797,4 @@ body {
     align-items: stretch;
   }
 }
+*/
