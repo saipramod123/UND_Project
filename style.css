@@ -1,15 +1,15 @@
 :root {
-  --und-green: #00843d;
-  --und-black: #231f20;
+  --und-green: #009A44;
+  --und-black: #000;
   --light-bg: #f7f7f7;
   --card-bg: rgba(255, 255, 255, 0.95);
-  --text-dark: #231f20;
+  --text-dark: #000;
   --transition: 0.3s ease;
 }
 
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
   background-color: var(--light-bg);
   color: var(--text-dark);
   transition: background-color var(--transition), color var(--transition);
