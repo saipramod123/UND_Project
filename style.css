@@ -45,9 +45,6 @@ body {
   justify-self: center;
 }
 
-
-
-
 #hamburger {
     display: flex;
     flex-direction: column;
@@ -131,7 +128,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
     gap: 2rem;
   }
 
@@ -464,10 +461,6 @@ body {
 }
 
 
-
-
-
-
 @media (max-width: 768px) {
   .hero-content img {
     width: 65vw;
@@ -476,11 +469,6 @@ body {
       border-radius: 12px;
   }
 }
-
-
-
-
-
 
 
 .share-toggle {
@@ -505,8 +493,6 @@ body {
   display: block;
   max-width: 100%;
 }
-
-
 
 .share-icons {
   display: flex;
@@ -594,7 +580,6 @@ body {
 
 
 
-
 .feedback-btn {
   position: fixed;
   bottom: 20px;
@@ -628,7 +613,6 @@ body {
     font-size: 0.85rem;
   }
 }
-
 
 
 .custom-arrow {

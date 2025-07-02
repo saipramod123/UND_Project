@@ -51,8 +51,7 @@ async function fetchAllPosts() {
   const today = new Date();
   const allFetchedPosts = [];
             
-
-  for (let offset = 0; offset < TOTAL_HISTORY_DAYS; offset += FETCH_WINDOW_SIZE_DAYS) {
+for (let offset = 0; offset < TOTAL_HISTORY_DAYS; offset += FETCH_WINDOW_SIZE_DAYS) {
     const fromDate = new Date(today);
     fromDate.setDate(today.getDate() - offset - (FETCH_WINDOW_SIZE_DAYS-1));
     const toDate = new Date(today);
@@ -85,10 +84,10 @@ function renderPosts(posts, isLoadMore = false, highlightQuery = "") {
     postList.innerHTML = "<p>No posts found.</p>";
     return;
   }
- popupPosts = posts;
+popupPosts = posts;
 const nextPosts = posts.slice(currentIndex, currentIndex + postsPerPage);nextPosts.forEach((post,index) => {
-    const card = document.createElement("div");
-    card.className = "post-card reveal";
+const card = document.createElement("div");
+card.className = "post-card reveal";
     card.addEventListener("click", () => {showBootstrapPost(currentIndex + index);});
     const localDate = new Date(post.date).toLocaleString(undefined, {
       dateStyle: "medium",
@@ -98,7 +97,7 @@ const nextPosts = posts.slice(currentIndex, currentIndex + postsPerPage);nextPos
     const currentPageURL = window.location.href.split('#')[0];
 const postURL = `${currentPageURL}#post-${post.id}`;
 const encodedPostURL = encodeURIComponent(postURL);
- const messageEncoded = encodeURIComponent(post.message);
+const messageEncoded = encodeURIComponent(post.message);
  let highlightedMessage = post.message;
     if (highlightQuery) {
       const regex = new RegExp(`(${highlightQuery})`, "gi");
@@ -127,7 +126,7 @@ const encodedPostURL = encodeURIComponent(postURL);
     postList.appendChild(card);
   });
 
-  observeReveal();
+observeReveal();
 attachShareToggles(); 
 currentIndex += postsPerPage;
 
@@ -174,8 +173,6 @@ document.getElementById("nextPost").addEventListener("click", (e) => {
     showBootstrapPost(popupCurrentIndex + 1);
   }
 });
-
-
 
 
 function observeReveal() {
