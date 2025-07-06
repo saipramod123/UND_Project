@@ -11,6 +11,7 @@ const loadMoreBtn = document.getElementById("load-more-btn");
 const loadingIndicator = document.getElementById("loading-indicator");
 let popupPosts = [];
 let popupCurrentIndex = 0;
+let activePosts = []; 
 
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -21,7 +22,7 @@ window.addEventListener("DOMContentLoaded", () => {
   loadMoreBtn.disabled = true;
 
   setTimeout(() => {
-    renderPosts(allPosts, true);
+    renderPosts(activePosts, true);
     loadingIndicator.style.display = "none";
     loadMoreBtn.disabled = false;
   }, 800);
@@ -72,13 +73,15 @@ for (let offset = 0; offset < TOTAL_HISTORY_DAYS; offset += FETCH_WINDOW_SIZE_DA
   }
 
   allPosts = allFetchedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  activePosts=allPosts;
   renderPosts(allPosts);
 }
 
 function renderPosts(posts, isLoadMore = false, highlightQuery = "") {
   if (!isLoadMore) {
     postList.innerHTML = ""; 
-    currentIndex = 0;        
+    currentIndex = 0; 
+    activePosts = posts;       
   }
   if (!posts.length) {
     postList.innerHTML = "<p>No posts found.</p>";
@@ -256,6 +259,7 @@ for (let i = 0; i < MAX_FILTER_DAYS; i++) {
     const targetDate = new Date();
     targetDate.setDate(targetDate.getDate() - i);
     const targetDay = targetDate.toISOString().split("T")[0];
+   
 
     const filtered = allPosts.filter(post => post.date.startsWith(targetDay));
     renderPosts(filtered, false);
