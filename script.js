@@ -243,3 +243,30 @@ document.querySelectorAll("#main-nav a").forEach(link => {
     this.classList.add("active");
   });
 });
+
+const filterToggle = document.getElementById("filterToggle");
+const dateDropdown = document.getElementById("dateDropdown");
+
+const MAX_FILTER_DAYS = 10;
+
+for (let i = 0; i < MAX_FILTER_DAYS; i++) {
+  const btn = document.createElement("button");
+  btn.textContent = i === 0 ? "Today" :`${i} day${i > 1 ? 's' : ''} ago`;
+  btn.addEventListener("click", () => {
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() - i);
+    const targetDay = targetDate.toISOString().split("T")[0];
+
+    const filtered = allPosts.filter(post => post.date.startsWith(targetDay));
+    renderPosts(filtered, false);
+    dateDropdown.classList.add("hidden");
+  });
+  dateDropdown.appendChild(btn);
+}
+
+filterToggle.addEventListener("click", (e) => {
+  e.stopPropagation();
+  dateDropdown.classList.toggle("hidden");
+});
+
+window.addEventListener("click", () => dateDropdown.classList.add("hidden"));

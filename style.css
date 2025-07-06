@@ -240,7 +240,45 @@ body {
   
 }
 
-/* POST SECTION */
+
+
+.campaign-goals {
+  background-color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.campaign-goals h2 {
+  margin-bottom: 1.5rem;
+  color: var(--und-green);
+}
+
+.goal-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.goal-card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-left: 4px solid var(--und-green);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  text-align: left;
+}
+
+.goal-card:hover {
+  transform: translateY(-5px);
+}
+
+
+.campaign-wrapper {
+  background-color: #f1f1f1; 
+   padding: 2rem 1rem;
+}
+
+
 .post-section {
   padding: 2rem 1rem;
    background: transparent;
@@ -248,13 +286,13 @@ body {
 }
 
 #search {
-  padding: 0.5rem;
-  width: 90%;
-  max-width: 400px;
-  margin: 1rem auto 2rem;
-  display: block;
+ height: 44px;
+  padding: 0 1rem;
+  font-size: 1rem;
+  flex-grow: 1;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
 #post-list {
@@ -324,36 +362,6 @@ body {
 }
 
 
-.campaign-goals {
-  background-color: white;
-  padding: 2rem 1rem;
-  text-align: center;
-}
-
-.campaign-goals h2 {
-  margin-bottom: 1.5rem;
-  color: var(--und-green);
-}
-
-.goal-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-.goal-card {
-  background-color: var(--card-bg);
-  padding: 1.5rem;
-  border-left: 4px solid var(--und-green);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  text-align: left;
-}
-
-.goal-card:hover {
-  transform: translateY(-5px);
-}
-
 .main-footer {
   background-color: #000;
   color: #fff;
@@ -414,7 +422,7 @@ body {
   padding-top: 1rem;
 }
 
-/* === Responsive Styles === */
+
 @media (min-width: 600px) {
   #post-list {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -573,10 +581,6 @@ body {
 }
 
 
-.campaign-wrapper {
-  background-color: #f1f1f1; 
-   padding: 2rem 1rem;
-}
 
 
 
@@ -707,4 +711,84 @@ mark {
   font-weight: bold;
   padding: 0 2px;
   border-radius: 2px;
+}
+
+
+.search-filter-row {
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.5rem auto;
+  max-width: 500px;
+  padding: 0;
+  flex-wrap: nowrap;
+}
+
+
+.filter-btn {
+  background-color: var(--und-green);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.filter-btn img {
+  width: 22px;
+  height: 22px;
+  filter: invert(1);
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: 48px;   
+  right: 0;
+  left: auto;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5rem 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  min-width: 160px;
+  z-index: 100;
+}
+.filter-wrapper {
+  position: relative;
+}
+
+.filter-dropdown button {
+ background: none;
+  border: none;
+  padding: 0.6rem 1rem;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.filter-dropdown button:hover {
+    background: #f2f2f2;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .search-filter-row {
+     justify-content: flex-start;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .filter-dropdown {
+    top: 52px;
+  }
 }

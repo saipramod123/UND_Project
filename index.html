@@ -72,7 +72,17 @@
 <div class="campaign-wrapper">
   <section class="post-section">
     <h2>Latest Campaign Posts</h2>
+    <div class="search-filter-row">
     <input type="text" id="search" placeholder="Search posts..." aria-label="Search posts by content" />
+    <div class="filter-wrapper">
+  <button id="filterToggle" class="filter-btn" aria-label="Filter posts by date">
+    <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/funnel.svg" alt="Filter" />
+  </button>
+  <div class="filter-dropdown hidden" id="dateDropdown" role="menu">
+   
+  </div>
+  </div>
+</div>
     <div id="post-list" aria-live="polite">
       <div class="skeleton"></div>
       <div class="skeleton"></div>
