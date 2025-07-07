@@ -194,36 +194,32 @@ function attachShareToggles() {
   const toggles = document.querySelectorAll(".share-toggle");
 
   toggles.forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation(); 
+    btn.onclick = (e) => {
+      e.stopPropagation();
 
-      
       document.querySelectorAll(".share-icons").forEach(icon => {
         if (icon !== btn.nextElementSibling) {
           icon.classList.add("hidden");
         }
       });
 
-   
       const icons = btn.nextElementSibling;
       icons.classList.toggle("hidden");
-    });
+    };
   });
 
-
-  window.addEventListener("click", () => {
-    document.querySelectorAll(".share-icons").forEach(icon => {
-      icon.classList.add("hidden");
-    });
-  });
-
-  
   document.querySelectorAll(".share-icons").forEach(icon => {
-    icon.addEventListener("click", (e) => {
+    icon.onclick = (e) => {
       e.stopPropagation();
-    });
+    };
   });
 }
+
+window.addEventListener("click", () => {
+  document.querySelectorAll(".share-icons").forEach(icon => {
+    icon.classList.add("hidden");
+  });
+});
 
 window.addEventListener("scroll", () => {
   const header = document.querySelector(".main-header");
